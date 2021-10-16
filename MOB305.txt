@@ -1,0 +1,328 @@
+Lập trình Game 2D
+Đầu ra:
+1. Lập trình android
+2. Lập trình React Native
+3. Lập trình game
+4. Lập trình IoT
+----------
+Lập trình game
+1. Công cụ: 
+Android Studio: AndEngine (code, không có design)
+Cocos -> C++
+Unity: C# - Trực quan, dễ chỉnh sửa, ------
+-------------
+Cấu trúc môn học: 8lab, 8quiz, 1Asm (chia 3 giai đoạn: asm1, asm2, asm ht)
+------------
+Nộp Asm:
+GD1: Nộp cùng lab4 (code giống lab4, đồ họa của bài asm)
+GD2: Nộp cùng Lab7 (code giống Lab7, đồ họa của bài Asm)
+GD HT: Nộp trước khi thi 3 ngày (bài hoàn thiện với đồ họa của Asm)
+------------
+Làm quiz: Trên LMS-> thời hạn: now + 24h
+-----------
+Nộp LAb, Asm: trên Classroom: thời hạn: now+24h
+Nộp đúng hạn: tối đa 10; nộp trong vòng 2 ngày; tối đa 6; nộp sau 2 ngày: tối đa 4
+--------------
+Sinh viên cấm thi khi:
+- Nghỉ 5 buổi
+- Không nộp bài asm hoàn thiện
+-----------------------------------------------------------------------
+Bai1 - Cài đặt + Giới thiệu về Unity
+- Là 1 platform cho phép xây dựng game
+- Hỗ trợ: Android, Ios, PC, ,....
+- licence: trial và trả phí
+-----
+Demo:
+1. Tạo project
+2. Import tài nguyên (kéo thả)
+3. Convert sang đối tượng game: Chọn Texture Type là Sprite (2D and UI)
+4. Quản lý Scene
+5. Thiết kế giao diện game flappy bird
+	- Tạo background
+		- Tạo gameObject -> Tạo component Sprite Renderer
+	- Thay đổi trục z
+	- Thay đổi tỷ lệ
+	- Tính toán độ dài, độ cao của Sprite Render
+	
+
+
+
+
+
+Hướng dẫn nộp bài Lab:
+B1- Viết code (trong code thêm 1 dòng chứa Mã sinh viên và tên sinh viên)
+B2- Sau khi viết xong, ta nén thành file zip, đổi tên là Lab1_PH0001_NguyenVanAn 
+B3- Chạy chương trình và quay video kết quả (khi quay, cho hình ảnh Mã SV, tên SV vào video) (nên quay khoảng 30s đến 1 phút, chỉ quay kết quả hiển thị và quay mã sinh viên, tên sinh viên)
+B4- Attach 2 file (không nén 2 file code và video) và chọn submit
+
+https://drive.google.com/drive/u/0/folders/1IxhWc56ncn-FFgWDrfRX0rBPZ9erhDjd
+------------------------------------------------------------------------------------------
+Bài 2: - Một số khái niệm trong lập trình game (C#)
+1. Công thức Di chuyển trong vật lý:
+transform.Translate(Vector3.right * vanToc * Time.deltaTime)
+gia tốc: 9.8m/s2
+=> 9.8 * Time.deltaTime
+2. Collider: Hình hộp bao xung quanh đối tượng, nhiệm vụ: detect va chạm với vật khác
+code: OnTriggerEnter2D(Collider2D coll)
+=> Hình hộp: BoxCollider2D, SphereCollider2D,....
+3. Truy xuất đến thành phần con của đối tượng game:
+GetComponent<TenThanhPhanCon>();
+4. Tương tác với chuột, bàn phím:
+Input.GetKeyDown(KeyCode.RightArrow): nhấn phím mũi tên
+Input.GetMouseButtonDown(0): nhấn trái chuột
+---
+Chú ý: 
+BoxCollider2D: Thể hiện hình khối của đối tượng game
+RigidBody2d: Thể hiện đối tượng có tính chất vật lý của game
+
+Demo1: Background chuyen dong
+Demo2: chim di chuyen va dap canh
+Demo3- Tạo chướng ngại vật (Pipe)
+Demo4- Thiết kế animation, animator
+Demo5- Thiết kế button play
+----------------------------------------------------------------------------
+Bài 4: Prefabs - các xử lý cơ bản
+1. Prefabs: là 1 template
+=> khi muốn thay đổi thông tin thì cần thay đổi trong template (prefabs)
+-> đối tượng con sẽ thay đổi theo
+Cách tạo prefabs: Kéo đối tượng cần tạo prefabs từ cửa sổ Hierachy vào Asset
+Cách tạo đối tượng con: làm ngược lại (Asset -> Hierachy
+2. Các thành phần của đối tượng game
+Đối tượng bao gồm các component
+Component bao gồm các thuộc tính
+Đối tượng có 3 component quan trọng
+- Sprite Render: Giúp ta nhìn thấy đối tượng
+- Collider2D (BoxCollider2D, CylinderCollider2D, SphereCollider2D,...): giúp cho đối tượng có hình khối(để detech va chạm)
+- Rigidbody2D: cho đối tượng có tính chất vật lý (vd: trọng lượng, sức cản không khí)
+3. Tương tác với chuột, bán phím:
+Input.GetKey(KeyCode.LeftArrow);//nhan vao phim mui ten ben trai
+Space: dau cach
+...
+4. Di chuyen
+gameObject.transform.Translate(Vector3.left * tocDo*Time.deltaTime);
+4. Quay đầu theo trục x
+gameObject.transform.localScale.x * -1
+5. Quĩ đạo di chuyển của nhân vật
+- di chuyển theo trục X
+- di chuyển theo trục Y
+=> tong hợp véc tơ chuyển động theo trục X và Y thì ra được vector chuyển động
+code:
+gameObject.GetComponent<Rigidbody2D>.velocity
+= new Vector2(gameObject.GetComponent<Rigidbody2D>.velocity.x, Y);
+6. Hàm thay đổi trạng thái:
+doiTuong.SetBool("tenTrangThai",true);
+7.Tag: quản lý các lớp đối tượng theo logic
+---------
+Demo: Điều khiển nhân vật bằng bàn phím
+------------------------------------------------------------------------------------------------------------
+Bài 5 - Thành phần vật lý và xử lý va chạm
+- Sprite Render: nhìn thấy hình ảnh của đối tượng
+- Collider (BoxCollider, CylinderCollider,....): Hình khối -> detech va chạm
+- Rigidbody: tính chất vật lý (chịu tác động của lực trọng trường, sức cản không khí, lực ma sát)
+----
+Va chạm:
+2 sự kiện: onTriggerEnter2D-> xảy ra khi 2 vật va chạm vào nhau (mềm, cho phép các sự vật đi xuyên qua nhau)
+	   onCollisionEnter2D -> xảy ra khi 2 vật va chạm vào nhau (đàn hồi, định luật 2, không cho đi xuyên qua)
+--- 
+Một số các thuộc tính quan trọng:
+1. Liên kết đối tượng trong game vào trong code
+dtCode = GameObject.Find("dtGame").GetComponent<KieuDoiTuong>();
+2. Xác định Tag, Layer:
+Tag: quản lý các đối tượng về mặt logic
+Layer: quản lý các đối tượng về mặt vật lý (vị trí)
+3. Xác định va chạm dựa vào tag:
+collision.gameOject.tag="TenTag";
+4. Hàm khởi tạo, hàm hủy:
+Create, Destroy
+5. di chuyển vị trí (hoán vị vị trí giữa nhân vật và camera)
+Vector3 cam = transform.position
+
+cam.x = nhanvat.position.x
+
+transform.position = cam
+-----
+Demo1: Camera follow theo nhân vật
+------
+Demo2: xử lý va chạm
+---
+demo3: hiển thị điểm
+- có 2 camera: game + canvas
+- Các điều khiển thuộc phần UI -> sẽ do camera của canvas quản lý
+- các điều khiển khác -> sẽ do game quản lý
+--------------------
+QUá trình va chạm:
+- sự kiện 1: Phát hiện (chớm va chạm)
+	Collision: đàn hồi
+	Trigger: xuyên qua
+- Sự kiện 2: xử lý
+=> 3 trạng thái
+onCollissionEnter2D(): bắt đầu va chạm
+onCollisionStay(): 2 vật dính vào nhau trong 1 khoảng thời gian
+onCollisonExit(): 2 vật tách nhau ra
+hoặc
+onTriggerEnter2D(): bắt đầu va chạm
+onTriggerStay(): 2 vật dính vào nhau trong 1 khoảng thời gian
+onTriggerExit(): 2 vật tách nhau ra
+(nhớ: cần chọn is Trigger trong collider
+-----------
+Thành phần xử lý:
+Box collider: hình khối
+Sphere collider: cầu
+Capsule: hình trụ
+Mesh: lưới
+Wheel: đĩa
+...
+Circle
+Edge
+Polygon
+----------------------------------
+Bài 6 - Xử lý sự kiện với Button
+1- Button: (onClick + Sự kiện xảy ra)
+2- Thiết kế 1 scene mới để sự kiện gọi đến scene
+3- Add scene (add vào menifest)	
+		
+Demo1 - xử lý sự kiện trong button
+Demo2 - Gameover
+	GameOver khi:
+		- Điểm <=0
+		=> va chạm với chướng ngại vật
+Demo3 - hiệu ứng va chạm
+---
+GameObject->Sprite->Animation->Điều khiển hành động->Prefabs->Script->Trạng thái
+->Xử lý va chạm -> Xây dựng UI -> Sử dụng hiệu ứng-> chuyển đổi level -> âm thanh....
+---
+Hệ thống UI - User Interface (phục vụ tương tác của người dùng) => có sự kiện
+Canvas: Là 1 không gian (khác với không gian game) cho phép người dùng tương tác
+Có 3 option cho người dùng chọn về mặt hiển thị:
+Overlay
+Camera
+world 
+---
+UI:
+React Transform: position rotation scale
+pivot: là điểm trụ của object (~ tâm)
+Anchor: mỏ neo (~bám với 1 hướng khi phóng to thu nhỏ)
+Text: bestFit (wrap_content)
+-------------------------------
+Bài 7 - Generate địa hình
+Mục đích: Giúp ta không phải tạo quá nhiều địa hình
+Nguyên tắc:
+- Xây dựng 1 hoặc nhiều địa hình (nhiều template)
+- Tổ hợp 2 hoặc nhiều địa hình khác nhau -> nhiều địa hình khác nhau
+VD có 3 thành phần địa hình = 1*2*3 = 6 địa hình
+	4 thành phần => 1*2*3*4 => 24
+	5 thành phần => 1*2*3*4*5 = 120 (khác nhau)
+	6 thành phàn =>1*...*6 = 720 địa hình
+Cách xây dựng:
+public GameObject[] objects;//khai bao mang object
+ int rand = Random.Range(0,objects.Length);//laay ve 1 chi so bat ky trong mang
+Instantiate(objects[rand],transform.position, Quaternion.identity);//tao 1 dia hinh o 1 vi tri
+Demo: Generate Dia hinh
+- B1 - Tạo prefabs dia hinh
+- 
+------------
+Cach 2: tạo địa hình nhưng có tính toán về khoảng cách
+- Tinh khoang cach gan nhat den nhan vat
+
+- Dinh nghia ham generate dia hinhf
+	(su dung vong lap de dinh nghia)
+void generateTileMap(int n)
+{
+	int i = 0;
+	while(i<n)
+	{
+		Instantiate(diaHinh,transform.position, Ganternion.identity);
+		i++;
+	}
+}
+- goi trong ham FixedUpdate: Update theo từng frame
+void FixedUpdate()
+{
+	//kiem tra khoang cach tu nhan vat den dia hinh
+	if(Vertor3.Distance(Player.position,transform.position)<=cach gan nhat den nhan vat)
+	{
+		generateTileMap(1);
+	}
+}
+
+
+----------
+Lý thuyết về design parttern (thiết kế mẫu, ví dụ như mẫu âm thanh) => tạo 1 instance duy nhất cho mẫu âm thanh đó để tại bất kỳ điểm nào trong chương trình cũng có thể gọi mẫu âm thanh đó
+=> cái được truyền chính là instance
+=> truyền từ Game sang code
+=> truyền từ file code A sang file code B
+=> cái được truyền chính là parttern
+Ví dụ: Nếu nhấn phím Space -> thì nhan vat Nhay
+
+if(Input.GetKeyDown(KeyCode.Space))
+{
+	nhay();
+}
+Vấn đề: muốn dùng 1 phím khác để cho nhân vật nhảy
+=> truyền dữ liệu từ người dùng vào game (truyền 1 mẫu, truyền parttern vào game: phím mũi tên lên UpArrow)
+=> nghĩa là truyền parttern (mẫu) UpArrow vào game để mỗi khi nhấn phím UpArrow thì nhân vật nhảy thay vì nhấn phím space
+
+Space=> nhay
+Muon doi phim UpArrow thanh phim Nhay
+=> 
+1.Huy: Space => Nhay
+2.Them: UpArrow => Nhay
+Design parttern: Thiet ke 1 mau de dung o bat ky thoi diem nao
+
+
+
+
+
+
+Thầy gửi các em bài demo sáng nay nhé (môn Game):
+Đây là code (gồm 2 phần)
+https://github.com/hungnttg/MOB305/blob/master/Lab7_Code_20211012.zip
+https://github.com/hungnttg/MOB305/blob/master/Lab7_Resources_20211012.zip
+Đây là video nhé:
+https://www.youtube.com/watch?v=ztExmVvIARY&list=PL0YqB-plTBztMzgpVJn6vyrYp6wXurvVz&index=5
+https://www.youtube.com/watch?v=Kb0q_b-QH7Q&list=PL0YqB-plTBztMzgpVJn6vyrYp6wXurvVz&index=6
+
+---------------------------------------------------------------------------
+Bài 8 - Hoàn thiện game
+1- Thêm file âm thanh
+2- Xây dựng background cho game => generate background
+- Tắt chế độ Skybox->Depth only
+- Donwload background (background) và grass (mid ground)
+- Cấu hình cho background và mid ground
+- Tạo đối tượng 3D Quad -> thêm vào phần Camera
+- Đưa hình anh BG, MG vào Quad
+- Thay đổi kích thước bg, mg
+- Bố trí không gian sao cho camera soi được hết các thành phần:
+camera-> nhân vật-> mid ground -> background
+- Chọn chế độ cho BG, MG (transparent)
+- Code để background chuyển động
+- Keos code vào BG, MG
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
